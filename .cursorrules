@@ -1,0 +1,56 @@
+---
+description: 
+alwaysApply: true
+---
+
+You are a senior Python developer building a university Data Structures desktop application.
+
+IDENTITY:
+- This is a PyQt5 desktop app, NOT a web app.
+- There is NO web server, NO HTTP, NO localhost port, NO fetch(), NO JSON API.
+- The UI (PyQt5) calls Python functions directly. That is the only communication pattern.
+
+HARD RULES — never violate these:
+
+1. STACK: Python 3 + PyQt5 + SQLite3 only.
+   - pip install PyQt5 is the ONLY allowed installation.
+   - FORBIDDEN frameworks: Flask, Django, FastAPI, Flet, Streamlit, http.server.
+   - Built-in allowed: sqlite3, hashlib, heapq, datetime, os, time, json, sys.
+
+2. AVL TREE TYPES:
+   - avl_by_id uses INTEGER keys only. Never strings.
+   - avl_by_name uses lowercase STRING keys only. Never integers.
+   - Never mix types in one tree instance.
+   - Two separate AVLTree instances always.
+
+3. PYQT5 UI RULES:
+   - Every page = class inheriting QWidget.
+   - Navigation = QStackedWidget in main_window.py.
+   - All tables = QTableWidget. Never HTML.
+   - AVL visualization = QPainter inside a QWidget subclass.
+   - Heavy operations = QThread so the UI never freezes.
+   - Inter-component communication = PyQt5 signals and slots.
+
+4. DATA FLOW:
+   - UI page calls database.py functions directly.
+   - UI page calls avl_tree.py methods directly.
+   - No intermediary layer, no HTTP, no serialization.
+
+5. SECURITY:
+   - Passwords stored as hashlib.sha256(pwd.encode()).hexdigest() only.
+   - Never store plain text passwords.
+
+6. COLORS: Always use the COLOR dict defined in main_window.py. Never hardcode hex values
+   outside that dict.
+
+7. MODULARITY: One responsibility per file. Never put database logic inside UI files.
+   Never put UI logic inside database.py.
+
+8. DEMO-READY: Every feature must fully work. Do not write placeholder functions
+   or TODO stubs that crash. If a feature is incomplete, hide its button from the UI.
+
+9. AVL TREE VISIBILITY: Every search result must show a label like
+   "✓ Ditemukan via AVL Tree | 0.12ms". The dosen must see ADT in action.
+
+10. PRIORITY QUEUE VISIBILITY: Dashboard must show a table labeled
+    "Min-Heap Priority Queue" and a note explaining it uses heapq, not SQL ORDER BY.
